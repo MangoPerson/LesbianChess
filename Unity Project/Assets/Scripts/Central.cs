@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class Central : MonoBehaviour
 {
-    public Color lightCol, darkCol;
+    public Color lightCol, darkCol, highlightCol;
     public Sprite[] sprites;
 
     public BoardPosition currentPos;
 
     Piece selected;
+    Piece lastSelected;
+    List<int> highlights;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class Central : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        highlights = new List<int>(0);
         Camera cam = Camera.main;
         Vector3 wpos = cam.ScreenToWorldPoint(Input.mousePosition);
         wpos.z = 0;
@@ -45,6 +48,8 @@ public class Central : MonoBehaviour
             wpos.z = -1;
             selected.transform.position = wpos;
 
+            highlights.Add(selected.index);
+
             if (Input.GetMouseButtonUp(0))
             {
                 Vector2 target = new Vector2((4 + Mathf.Round(wpos.x - .5f)), (4 + Mathf.Round(wpos.y - .5f)));
@@ -52,6 +57,7 @@ public class Central : MonoBehaviour
 
                 if (move.isLegal())
                 {
+                    lastSelected = selected;
                     currentPos.UpdateBoard(move);
                 }
                 else
@@ -63,5 +69,7 @@ public class Central : MonoBehaviour
             }
         }
 
+        if (lastSelected != null) highlights.Add(lastSelected.index);
+        currentPos.DrawBoard(lightCol, darkCol, highlightCol, highlights);
     }
 }
