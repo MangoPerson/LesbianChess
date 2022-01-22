@@ -96,44 +96,16 @@ public class BoardPosition
             }
 
             wMove = !wMove;
-
-            bool endGame = true;
-            foreach (Piece piece in pieces)
-            {
-                if (piece.type == 4)
-                {
-                    endGame = false;
-                    break;
-                }
-            }
-
-            if (endGame) EndGame(1);
-
-            endGame = true;
-
-            foreach (Piece piece in pieces)
-            {
-                if (piece.type == 10)
-                {
-                    endGame = false;
-                    break;
-                }
-            }
-
-            if (endGame) EndGame(0);
         }
     }
 
-    public void EndGame(int endState)
+    public void EndGame()
     {
         foreach (Piece piece in pieces)
         {
             Object.Destroy(piece.gameObject);
         }
 
-        board.transform.localScale = 32 * new Vector3(1, 1, 1);
-
-        if (endState == 0) board.GetComponent<SpriteRenderer>().sprite = GameObject.Find("Central").GetComponent<Central>().sprites[12];
-        if (endState == 1) board.GetComponent<SpriteRenderer>().sprite = GameObject.Find("Central").GetComponent<Central>().sprites[13];
+        Object.Destroy(board);
     }
 }
