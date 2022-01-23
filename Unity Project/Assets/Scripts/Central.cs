@@ -37,8 +37,10 @@ public class Central : MonoBehaviour
     {
         //initialize the list of highlighted squares
         highlights = new List<int>(0);
+
         //get the main camera for mouse position to world point conversion
         Camera cam = Camera.main;
+
         //convert the mouse position to a point in the world, setting its z coordinate to 0
         Vector3 wpos = cam.ScreenToWorldPoint(Input.mousePosition);
         wpos.z = 0;
@@ -72,7 +74,8 @@ public class Central : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 //target square of the move according to where the mouse currently currently is
-                Vector2 target = new Vector2((4 + Mathf.Round(wpos.x - .5f)), (4 + Mathf.Round(wpos.y - .5f)));
+                Vector2 target = new Vector2(4 + Mathf.Round(wpos.x - .5f), 4 + Mathf.Round(wpos.y - .5f));
+
                 //instantiate the move object
                 Move move = new Move(selected, target);
 
@@ -81,6 +84,7 @@ public class Central : MonoBehaviour
                 {
                     //set the last moved piece to be the selected piece
                     lastSelected = selected;
+
                     //update the board position
                     currentPos.UpdateBoard(move);
                 }
@@ -89,7 +93,7 @@ public class Central : MonoBehaviour
                     //reset the position of the selected piece
                     selected.UpdatePos(false);
                 }
-
+                
                 //make the piece no longer selected
                 selected = null;
 

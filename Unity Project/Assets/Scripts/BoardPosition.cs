@@ -15,6 +15,7 @@ public class BoardPosition
     {
         //set it to be white's move
         wMove = true;
+
         //create the board and pieces
         Create(indices, types);
     }

@@ -108,7 +108,7 @@ public class Move
                     }
                 }
                 break;
-            //night
+            //knight
             case 2:
                 if(difx + dify != 3 || difx > 2 || dify > 2)
                 {

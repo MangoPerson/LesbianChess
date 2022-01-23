@@ -31,7 +31,7 @@ public class Piece : MonoBehaviour
         gameObject.transform.position = new Vector3(x - 3.5f, y - 3.5f, 0);
     }
 
-    //create a piece with parameters: game object to put component on, piece type, piece position (in terms of the square index)
+    //create a piece with parameters -- obj: game object to put component on; type: piece type; index: piece position (in terms of the square index)
     public static Piece Create(GameObject obj, int type, int index)
     {
         //add a piece component to the gameobject
@@ -49,7 +49,7 @@ public class Piece : MonoBehaviour
         return ret;
     }
 
-    //create a piece with parameters: game object to put component on, piece type, piece position (in terms of file/rank)
+    //create a piece with parameters -- obj: game object to put component on; type: piece type; index: piece position (in terms of file/rank)
     public static Piece Create(GameObject obj, int type, int x, int y)
     {
         //add a piece component to the gameobject
@@ -67,7 +67,7 @@ public class Piece : MonoBehaviour
         return ret;
     }
 
-    //update the piece's actual position according to its file/rank with parameters -- useIndex: whether to update the piece's position according to its index or its file/rank
+    //update the piece's actual position according to its file/rank with parameters -- useIndex: whether to update the piece's position with its index, or with its file/rank
     public void UpdatePos(bool useIndex)
     {
         //check whether to use index or file/rank
@@ -82,6 +82,8 @@ public class Piece : MonoBehaviour
             //set index according to file/rank
             index = 8 * y + x;
         }
+
+        //set piece's actual position according to its file/rank
         gameObject.transform.position = new Vector3(x - 3.5f, y - 3.5f, 0);
     }
 
