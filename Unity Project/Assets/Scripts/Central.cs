@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class Central : MonoBehaviour
 {
+    //colors for light squares, dark squares, and highlighted squares
     public Color lightCol, darkCol, highlightCol;
+    //sprites for pieces
     public Sprite[] sprites;
 
+    //define starting position
     public List<int> start_indices = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63 };
     public List<int> start_types = new List<int> { 3, 2, 1, 4, 4, 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 9, 8, 7, 10, 10, 7, 8, 9 };
 
+    //
     public BoardPosition currentPos;
 
     Piece selected;
